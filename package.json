@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "This repository is developing about SRM restful api.",
   "main": "plopfile.js",
+  "type": "module",
   "directories": {
     "example": "tsc",
     "test": "tests"
   },
   "bin": {
-    "srm_rest_api_code_generation": "plopfile.js"
+    "srm_rest_api_code_generation": "index.js"
   },
+  "preferGlobal": true,
   "scripts": {
     "start": "plop"
   },
