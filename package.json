@@ -1,6 +1,6 @@
 {
   "name": "srm_rest_api_code_generation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This repository is developing about SRM restful api.",
   "main": "plopfile.js",
   "type": "module",
