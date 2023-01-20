@@ -2,14 +2,14 @@
   "name": "srm_rest_api_code_generation",
   "version": "1.1.0",
   "description": "This repository is developing about SRM restful api.",
-  "main": "plopfile.js",
+  "main": "index.js",
   "type": "module",
   "directories": {
     "example": "tsc",
     "test": "tests"
   },
   "bin": {
-    "srm_rest_api_code_generation": "index.js"
+    "srm_rest_api_code_generation": "./index.js"
   },
   "preferGlobal": true,
   "scripts": {
