@@ -16,7 +16,7 @@ from .views import {{pascalCase routeName}}API
     methods=["GET", "POST"],
 )
 {{snakeCase routeName}}_bp.add_url_rule(
-    "/<string:{{snakeCase viewName}}_number>",
+    "/<string:{{snakeCase routeName}}_number>",
     view_func={{snakeCase routeName}}_view,
     methods=["GET", "PUT", "DELETE"],
 )
