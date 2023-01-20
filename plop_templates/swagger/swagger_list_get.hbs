@@ -1,0 +1,94 @@
+Returns the list of the contract comments information.
+---
+tags:
+  - {{snakeCase swaggerName}}
+parameters:
+  - name: authorization
+    in: header
+    description: Please add the authentication token to here.
+    required: true
+    type: string
+  - name: {{snakeCase swaggerName}}_number
+    in: path
+    description: The contract number
+    required: true
+
+responses:
+  200:
+    description: OK. The response will have a body that includes the list of contract comments and the pagination.
+    schema:
+      type: array
+      items:
+        $ref: "#/definitions/{{pascalCase swaggerName}}"
+    examples:
+      responses:
+        {
+          "pages": {
+            "firstUrl": "http://127.0.0.1:8000/contracts/000252/?per_page=2&page=1",
+            "lastUrl": "http://127.0.0.1:8000/contracts/000252/?per_page=2&page=1",
+            "nextUrl": null,
+            "page": 1,
+            "pages": 1,
+            "perPage": 2,
+            "prevUrl": null,
+            "total": 1,
+          },
+          "comments": [
+            {
+              "comment": " 10.00% DISCOUNT ON RENTAL",
+              "driver_code": "",
+              "operator_id": "",
+              "print": "Y",
+              "sequence": "000",
+              "unique_id": "",
+              "pickup_n": "0",
+              "delivery_n": "0",
+              "operator_name": ""
+            },
+          ],
+        }
+  401:
+    description: Authorization information is missing or invalid.
+    examples:
+      response:
+        {
+          "error_code": 1002,
+          "error_msg": "Invalid token. Please log in again.",
+        }
+definitions:
+  Comment:
+    type: object
+    required:
+      - comment
+      - print
+    properties:
+      comment:
+        type: string
+        minLength: 1
+        maxLength: 250
+      driver_code:
+        type: string
+        minLength: 1
+        maxLength: 9
+      print:
+        type: string
+        minLength: 1
+        enum: ["Y", "N"]
+      sequence:
+        type: string
+        maxLength: 3
+        readonly: true
+      unique_id:
+        type: string
+        maxLength: 32
+        readonly: true
+      pickup_n:
+        type: number
+      delivery_n:
+        type: number
+      operator_id:
+        type: string
+        maxLength: 18
+        readonly: true
+      operator_name:
+        type: string

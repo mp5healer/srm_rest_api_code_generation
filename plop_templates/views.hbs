@@ -1,0 +1,82 @@
+import os
+
+from flask import g
+from flask import request
+from flasgger import swag_from
+from flasgger import validate
+from flask import views
+
+
+from srm_rest_api import db
+from srm_rest_api.decorators import create_resource
+from srm_rest_api.decorators import paginate
+from srm_rest_api.decorators import retrieve_single_resource
+from srm_rest_api.decorators import token_required
+from srm_rest_api.decorators import update_resource
+from srm_rest_api.decorators import delete_resource
+from srm_rest_api.utils import validate_request_handler
+from srm_rest_api.utils import validate_request_handler_without_required_fields
+from srm_rest_api.exceptions import validation_error_handler
+
+from .models import {{pascalCase viewName}}
+from .view_fields import {{snakeCase viewName}}_fields
+
+
+class {{pascalCase viewName}}ListAPI(views.MethodView):
+    @create_resource
+    @token_required
+    @swag_from("swagger/{{snakeCase viewName}}_post.yml")
+    def post(self, {{snakeCase viewName}}_number):
+        validate(
+            request.json,
+            "{{pascalCase viewName}}",
+            "swagger/{{snakeCase viewName}}_list_get.yml",
+            validation_error_handler=validation_error_handler,
+            validation_function=validate_request_handler,
+        )
+        return ({{pascalCase viewName}}({{snakeCase viewName}}_number, request.json), request.json)
+
+    @paginate("{{snakeCase viewName}}s")
+    @token_required
+    @swag_from("swagger/{{snakeCase viewName}}s_get.yml")
+    def get(self, {{snakeCase viewName}}_number):
+        filters = {
+            "cs_id": g.auth_token["company_id"],
+        }
+        return ({{pascalCase viewName}}.query.filter_by(**filters), {{snakeCase viewName}}_fields)
+
+
+class {{pascalCase viewName}}API(views.MethodView):
+    @retrieve_single_resource
+    @token_required
+    @swag_from("swagger/{{snakeCase viewName}}_get.yml")
+    def get(self, {{snakeCase viewName}}_number):
+        filters = {
+            "cs_id": g.auth_token["company_id"],
+        }
+        return ({{pascalCase viewName}}.query.filter_by(**filters), {{snakeCase viewName}}_fields)
+
+    @update_resource
+    @token_required
+    @swag_from("swagger/{{snakeCase viewName}}_put.yml")
+    def put(self, {{snakeCase viewName}}_number):
+        validate(
+            request.json,
+            "{{pascalCase viewName}}",
+            "swagger/{{snakeCase viewName}}_get.yml",
+            validation_error_handler=validation_error_handler,
+            validation_function=validate_request_handler_without_required_fields,
+        )
+        filters = {
+            "cs_id": g.auth_token["company_id"],
+        }
+        return ({{pascalCase viewName}}.query.filter_by(**filters).one_or_none(), request.json)
+
+    @delete_resource
+    @token_required
+    @swag_from("swagger/{{snakeCase viewName}}_delete.yml")
+    def delete(self, {{snakeCase viewName}}_number):
+        filters = {
+            "cs_id": g.auth_token["company_id"],
+        }
+        return {{pascalCase viewName}}.query.filter_by(**filters).one_or_none()

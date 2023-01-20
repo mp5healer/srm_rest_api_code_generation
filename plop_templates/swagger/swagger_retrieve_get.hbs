@@ -1,0 +1,35 @@
+Returns a comment of the given contract comment and uniqueID.
+---
+tags:
+  - {{snakeCase swaggerName}}
+parameters:
+  - name: authorization
+    in: header
+    description: Please add the authentication token to here.
+    required: true
+    type: string
+  - name: {{snakeCase swaggerName}}_number
+    in: path
+    description: The id of the {{ swaggerName }}.
+    required: true
+    type: string
+
+responses:
+  200:
+    description: If the request is valid, the response will have a status of '200' and the body contains {{swaggerName}}.
+    schema:
+      type: object
+      $ref: "#/definitions/{{pascalCase swaggerName}}"
+    examples:
+      response:
+        {
+          "comment": " 10.00% DISCOUNT ON RENTAL",
+          "driver_code": "",
+          "operator_id": "",
+          "print": "Y",
+          "sequence_number": "000",
+          "unique_id": "",
+          "pickup_n": "0",
+          "delivery_n": "0",
+          "operator_name": ""
+        }

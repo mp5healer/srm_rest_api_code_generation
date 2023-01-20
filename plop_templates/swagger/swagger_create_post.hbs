@@ -1,0 +1,54 @@
+Add comment to the given contract.
+---
+tags:
+  - {{snakeCase swaggerName}}
+parameters:
+  - name: authorization
+    in: header
+    description: Please add the authentication token to here.
+    required: true
+    type: string
+  - name: {{snakeCase swaggerName }}
+    in: body
+    type: object
+    schema:
+      $ref: "#/definitions/{{pascalCase swaggerName }}"
+
+responses:
+  201:
+    description: The response status code is 201 created.
+    examples:
+      response: {}
+  400:
+    description: |
+      Invalid request data - When the requested data has an invalid value, the response body will include error code 100 and corresponding error message.
+
+      Invalid request format - When the requested data is not JSON type, the response body will include error code 101 and corresponding error message.
+
+      Missing mandatory data - When the requested data doesn't have mandatory data, the response body will include error code 103 and corresponding error message.
+    schema:
+      type: object
+      properties:
+        errorCode:
+          type: integer
+        errorMsg:
+          type: string
+    examples:
+      Invalid request data:
+        { "errorCode": 100, "errorMsg": "invalid request data" }
+      Invalid request format:
+        { "errorCode": 101, "errorMsg": "invalid request form" }
+      Missing mandatory data:
+        { "errorCode": 103, "errorMsg": "The missing field is required" }
+  409:
+    description: If the request is invalid, the response will have a status of '409'.
+    schema:
+      type: object
+      properties:
+        error_code:
+          type: integer
+        error_msg:
+          type: string
+    examples:
+      Conflict:
+        { "errorCode": 104, "errorMsg": "The duplicated data already exists." }

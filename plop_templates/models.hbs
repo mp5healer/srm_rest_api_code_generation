@@ -1,0 +1,11 @@
+from flask import g
+
+from srm_rest_api import db
+from srm_rest_api.models import Pro4Model
+
+
+class {{pascalCase modelName}}(db.Model, Pro4Model):
+  __table__ = db.metadata.tables["{{snakeCase tableName}}"]
+
+  def __init__(self, request_data):
+    self.cs_id = g.auth_token["company_id"]

@@ -1,0 +1,21 @@
+Delete Contract Comment.
+---
+tags:
+  - {{snakeCase swaggerName}}
+parameters:
+  - name: authorization
+    in: header
+    description: Please add the authentication token to here.
+    required: true
+    type: string
+  - name: {{snakeCase swaggerName}}_number
+    in: path
+    description: {{titleCase swaggerName}} unique ID
+    required: true
+    type: string
+
+responses:
+  200:
+    description: The response will have a blank JSON body.
+  404:
+    description: The response will have a status code of '404' if the contract number or unique id is invalid or does not exist.

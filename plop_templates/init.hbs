@@ -1,0 +1,22 @@
+from flask import Blueprint
+
+from .views import {{pascalCase routeName}}ListAPI
+from .views import {{pascalCase routeName}}API
+
+{{snakeCase routeName}}_bp = Blueprint("{{snakeCase routeName}}s", __name__)
+
+{{snakeCase routeName}}_list_view = {{pascalCase routeName}}ListAPI.as_view(
+"{{snakeCase routeName}}_list_api"
+)
+{{snakeCase routeName}}_view = {{pascalCase routeName}}API.as_view("{{snakeCase routeName}}_api")
+
+{{snakeCase routeName}}_bp.add_url_rule(
+    "/",
+    view_func={{snakeCase routeName}}_list_view,
+    methods=["GET", "POST"],
+)
+{{snakeCase routeName}}_bp.add_url_rule(
+    "/<string:{{snakeCase viewName}}_number>",
+    view_func={{snakeCase routeName}}_view,
+    methods=["GET", "PUT", "DELETE"],
+)
