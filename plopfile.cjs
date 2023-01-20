@@ -28,7 +28,7 @@ module.exports = (plop) => {
       {
         type: "add",
         path: path.join(
-          __dirname,
+          process.cwd(),
           "srm_rest_api/{{snakeCase moduleName}}/models.py"
         ),
         templateFile: path.join(__dirname, "plop_templates", "models.hbs"),
@@ -50,7 +50,7 @@ module.exports = (plop) => {
       {
         type: "add",
         path: path.join(
-          __dirname,
+          process.cwd(),
           "srm_rest_api/{{snakeCase moduleName}}/view_fields.py"
         ),
         templateFile: path.join(__dirname, "plop_templates", "view_fields.hbs"),
@@ -72,7 +72,7 @@ module.exports = (plop) => {
       {
         type: "add",
         path: path.join(
-          __dirname,
+          process.cwd(),
           "srm_rest_api/{{snakeCase moduleName}}/views.py"
         ),
         templateFile: path.join(__dirname, "plop_templates", "views.hbs"),
@@ -94,7 +94,7 @@ module.exports = (plop) => {
       {
         type: "add",
         path: path.join(
-          __dirname,
+          process.cwd(),
           "srm_rest_api/{{snakeCase moduleName}}/__init__.py"
         ),
         templateFile: path.join(__dirname, "plop_templates", "init.hbs"),
@@ -116,7 +116,7 @@ module.exports = (plop) => {
       {
         type: "add",
         path: path.join(
-          __dirname,
+          process.cwd(),
           "srm_rest_api/{{snakeCase moduleName}}/swagger/{{snakeCase moduleName}}_list_get.yml"
         ),
         templateFile: path.join(
@@ -129,7 +129,7 @@ module.exports = (plop) => {
       {
         type: "add",
         path: path.join(
-          __dirname,
+          process.cwd(),
           "srm_rest_api/{{snakeCase moduleName}}/swagger/{{snakeCase moduleName}}_get.yml"
         ),
         templateFile: path.join(
@@ -142,7 +142,7 @@ module.exports = (plop) => {
       {
         type: "add",
         path: path.join(
-          __dirname,
+          process.cwd(),
           "srm_rest_api/{{snakeCase moduleName}}/swagger/{{snakeCase moduleName}}_post.yml"
         ),
         templateFile: path.join(
@@ -155,7 +155,7 @@ module.exports = (plop) => {
       {
         type: "add",
         path: path.join(
-          __dirname,
+          process.cwd(),
           "srm_rest_api/{{snakeCase moduleName}}/swagger/{{snakeCase moduleName}}_put.yml"
         ),
         templateFile: path.join(
@@ -168,7 +168,7 @@ module.exports = (plop) => {
       {
         type: "add",
         path: path.join(
-          __dirname,
+          process.cwd(),
           "srm_rest_api/{{snakeCase moduleName}}/swagger/{{snakeCase moduleName}}_delete.yml"
         ),
         templateFile: path.join(
